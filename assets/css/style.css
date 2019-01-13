@@ -1,0 +1,41 @@
+body {
+  font-size: 18px;
+  line-height: 34px;
+  font-family: "Comic Sans MS";
+  background-color: antiquewhite;
+}
+
+.container {
+  width: 100%;
+  max-width: 100%;
+  padding: 30px;
+  margin: 0 auto;
+  background-color: #ffffff;
+  border: 1px solid #dddddd;
+}
+
+#warning {
+  color: red;
+  text-align: center;
+}
+  
+button, form, input {
+  margin: 10px;
+}
+
+img {
+  width: 300px;
+  height: 300px;
+}
+
+h1 {
+  font-family: Georgia, Times, "Times New Roman", serif;
+  font-weight: 700;
+  color: maroon;
+  text-align: center;
+}
+
+div.col-md-6, p {
+  text-align: center;
+  color: maroon;
+}

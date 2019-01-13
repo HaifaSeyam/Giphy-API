@@ -16,7 +16,31 @@ function displayTopicInfo() {
         method: "GET"
     }).then(function(response) {
         console.log(response);
-        });
+        for (var i = 0 ; i < response.data.length ; i++) {
+            // Storing the rating data
+            var rating = response.data[i].rating;
+            // Creating an element to have the rating displayed
+            var displayRating = $("<p>").text("Rating: " + rating);
+            // Retrieving the URL for the image
+            var imgURL = response.data[i].images.fixed_width_still.url;
+            // Creating an element to hold the image
+            var image = $("<img>").attr("src", imgURL);
+            image.addClass("gif");
+            // Adding a state-attribute
+            image.attr("data-state", "still");
+            image.attr("data-still", response.data[i].images.fixed_width_still.url);
+            image.attr("data-animate", response.data[i].images.fixed_width.url);
+            //Creating a div to add 4 images (columns) per line (row)
+            var imageDiv = $("<div>");
+            imageDiv.addClass("col-md-3");
+            // Displaying the rating
+            imageDiv.append(displayRating);
+            // Appending the image
+            imageDiv.append(image);
+            // Putting the entire topic above the previous topics
+            $(".topics-view").prepend(imageDiv);
+        }
+    });
 }
 
     // Function for displaying topic data
@@ -37,6 +61,17 @@ function displayTopicInfo() {
           $("#buttons-view").append(a);
         }
       }
+
+      // This function handles events where a topic button is clicked
+      $("#add-topic").on("click", function(event) {
+                event.preventDefault();
+                // This line grabs the input from the textbox
+                var topicInput = $("#topic-input").val().trim();
+                // Adding topic from the textbox to our array
+                topics.push(topicInput);
+                // Calling renderButtons which handles the processing of our topics array
+                renderButtons();
+      });
 
       // Adding a click event listener to all elements with a class of "topic-btn"
       $(document).on("click", ".topic-btn", displayTopicInfo);
